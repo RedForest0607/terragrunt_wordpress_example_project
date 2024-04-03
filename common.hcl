@@ -1,11 +1,3 @@
-locals {
-    app_name_vars = read_terragrunt_config(find_in_parent_folders("app.hcl"))
-    environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-
-    app_name = local.app_name_vars.locals.app_name
-    env = local.environment_vars.locals.env
-}
-
 generate "provider" {
     path = "provider.tf"
     if_exists = "overwrite_terragrunt"
@@ -25,8 +17,3 @@ provider "kubernetes" {
 }
 EOF
 }
-
-inputs = merge (
-    local.app_name_vars.locals,
-    local.environment_vars.locals,
-)

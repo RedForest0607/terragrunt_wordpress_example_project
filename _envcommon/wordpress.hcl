@@ -8,6 +8,6 @@ terraform {
 }
 
 inputs = {
-    name = local.app_name
+    name = "wordpress"
     app_name = local.app_name
 }
